@@ -1,6 +1,6 @@
 #hero{
     height: 800px;
-    background-image:url(images/crops/green.JPG);
+    background-image:url(/images/crops/green.jpg);
     background-position: center;
     background-size: cover;
    

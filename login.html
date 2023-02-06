@@ -13,7 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="styles/shared.css" />
+    <link rel="stylesheet" href="styles/signup-login.css">
   </head>
   <body>
     <header>
@@ -26,14 +27,18 @@
         <ul>
           <li>
             <label for="phone-number">Mobile Number</label>
-            <input type="text" name="number" id="phone-number" />
+            <input type="text" name="number" id="phone-number" required/>
           </li>
           <li>
             <label for="password">password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" required/>
           </li>
+          
+            <button>Submit</button>
+          
         </ul>
       </form>
     </main>
+    
   </body>
 </html>
