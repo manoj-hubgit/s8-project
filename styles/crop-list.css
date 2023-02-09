@@ -1,0 +1,35 @@
+header {
+  position: static;
+}
+main {
+  background-color: #00ffff;
+  margin: 0 5rem 3rem 5rem;
+  border-radius: 15px;
+}
+h1 {
+    font-size: 3rem;
+  text-align: center;
+  padding-top: 2rem;
+  
+}
+h2 {
+    font-size: 1.5rem;
+  padding-left: 2rem;
+}
+
+ul{
+    padding:0 5rem 0 5rem ;
+}
+li{
+    font-size: 1.3rem;
+  
+}
+.seed-field{
+    padding-bottom: 1.5rem;
+}
+.line-dec{
+    list-style:disc;
+}
+#bottom-pad{
+    padding-bottom: 2rem;
+}
