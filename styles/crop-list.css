@@ -4,7 +4,8 @@ header {
 main {
   background-color: #00ffff;
   margin: 0 5rem 3rem 5rem;
-  border-radius: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 h1 {
     font-size: 3rem;
