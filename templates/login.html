@@ -12,8 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/shared.css" />
-    <link rel="stylesheet" href="styles/signup-login.css">
+    <link rel="stylesheet" href="static/shared.css" />
+    <link rel="stylesheet" href="static/signup-login.css">
   </head>
   <body>
     <header>
@@ -22,15 +22,19 @@
       </div>
     </header>
     <main>
-      <form action="" method="post">
+      
+      <form action="/login" method="post">
         <ul>
           <li>
-            <label for="phone-number">Mobile Number</label>
-            <input type="text" name="number" id="phone-number" required/>
+            <label for="phoneNumber">Mobile Number</label>
+            <input type="text" name="phoneNumber" id="phoneNumber" required/>
           </li>
           <li>
             <label for="password">password</label>
             <input type="password" name="password" id="password" required/>
+            {% if error %}
+			      <p class="error">{{ error }}</p>
+		        {% endif %}
           </li>
           
             <button>Submit</button>
