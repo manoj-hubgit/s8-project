@@ -2,7 +2,7 @@ header {
   position: static;
 }
 main {
-  background-color: #00ffff;
+  background-color: pink;
   margin: 0 5rem 3rem 5rem;
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);

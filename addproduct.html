@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/shared.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/signup-login.css">
+
+    <title>agri portal</title>
+  </head>
+  <body>
+    <header>
+      <div id="page-logo">
+        <a class="headerLogo" href="/index.html">agri portal</a>
+      </div>
+    </header>
+    <main>
+      <form action="" method="get">
+        <ul>
+        <li>
+        <label for="product-type">What Do You Have</label>
+        <select name="product" id="product-type">
+          <option value="Machinary">Machinary</option>
+          <option value="Seeds">Seeds</option>
+          <option value="Fertilizer">Fertilizer</option>
+        </select>
+        </li>
+        
+       
+        <li>
+          <label for="product-name">Product Name</label>
+          <input type="text" id="product-name" name="product-name" required />
+        </li>
+        <li>
+          <label for="Quantity">Quantity</label>
+          <input type="number" id="Quantity" name="Quantity" required />
+          <select name="product" id="product-type">
+            <option value="Machinary">pcs</option>
+            <option value="Seeds">kg</option>
+            <option value="Fertilizer">L</option>
+          </select>
+        </li>
+        <button>Submit</button>
+</ul>
+      </form>
+    </main>
+  </body>
+</html>
