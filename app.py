@@ -1,12 +1,36 @@
 from flask import Flask, render_template, request, redirect
+from flask_mysqldb import MySQL
 
 
 app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 's8 project'
+
+mysql = MySQL(app)
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
+@app.route('/signup', methods=['POST','GET'])
+def signup():
+    if(request.method=='POST'):
+        name = request.form['name']
+        number = request.form['number']
+        password = request.form['password']
+        address = request.form['address']
+        district = request.form['district']
+
+        cursor = mysql.connection.cursor()
+        cursor.execute("Insert into user values(%s,%s ,%s, %s, %s)", (name, number, password, address, district))
+        mysql.connection.commit()
+        cursor.close()
+        return redirect('/login')
+    else:
+        return render_template('signup.html')
 
 
 @app.route('/login', methods=['POST','GET'])
@@ -14,9 +38,15 @@ def login():
     if(request.method=='POST'):
         phoneNumber = request.form['phoneNumber']
         password = request.form['password']
-        # Check if the username and password are correct
-        if phoneNumber == '9361598903' and password == "password":
+        
+        cursor = mysql.connection.cursor()
+        cursor.execute("Select * from user where phone=%s and password=%s", (phoneNumber, password))
+        account = cursor.fetchone()
+
+
+        if account:
             return redirect('/addProduct')
+            
         else:
             return render_template('login.html',error="Invalid Credentials")
     else:
@@ -30,9 +60,6 @@ def croplist():
 def addProcut():
     return render_template('addProduct.html')
 
-@app.route('/signup')
-def signup():
-    return render_template('signup.html')
 
 @app.route('/crop-details/chilly')
 def chilly():
@@ -48,8 +75,11 @@ def brinjal():
 
 @app.route('/crop-details/snake-gourd')
 def snakegourd():
-    return render_template('crop-details/brinjal.html')
+    return render_template('crop-details/snake-gourd.html')
     
+@app.route('/crop-details/bhendi')
+def bhendi():
+    return render_template('crop-details/bhendi.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
