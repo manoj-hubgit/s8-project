@@ -81,5 +81,25 @@ def snakegourd():
 def bhendi():
     return render_template('crop-details/bhendi.html')
 
+@app.route('/crop-details/bitter-gourd')
+def bittergourd():
+    return render_template('crop-details/bitter-gourd.html')
+
+@app.route('/crop-details/bottle-gourd')
+def bottlegourd():
+    return render_template('crop-details/bottle-gourd.html')
+
+@app.route('/crop-details/ash-gourd')
+def ashgourd():
+    return render_template('crop-details/ashgourd.html')
+
+@app.route('/crop-details/potato')
+def potato():
+    return render_template('crop-details/potato.html')
+    
+@app.route('/crop-details/ribbed-gourd')
+def ribbedgourd():
+    return render_template('crop-details/ribbed-gourd.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
