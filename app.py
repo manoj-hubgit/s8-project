@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect,make_response
 from flask_mysqldb import MySQL
 
 
@@ -15,6 +15,7 @@ mysql = MySQL(app)
 def home():
     return render_template('index.html')
 
+
 @app.route('/signup', methods=['POST','GET'])
 def signup():
     if(request.method=='POST'):
@@ -24,11 +25,14 @@ def signup():
         address = request.form['address']
         district = request.form['district']
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("Insert into user values(%s,%s ,%s, %s, %s)", (name, number, password, address, district))
-        mysql.connection.commit()
-        cursor.close()
-        return redirect('/login')
+        if(district=='erode' or district=='Erode' or district=='erd'):
+            cursor = mysql.connection.cursor()
+            cursor.execute("Insert into user(name,phone_num,password,address,district) values(%s,%s ,%s, %s, %s)", (name, number, password, address, district))
+            mysql.connection.commit()
+            cursor.close()
+            return redirect('/login')
+        else:
+            return render_template('signup.html',error="Only available for Erode")
     else:
         return render_template('signup.html')
 
@@ -40,21 +44,138 @@ def login():
         password = request.form['password']
         
         cursor = mysql.connection.cursor()
-        cursor.execute("Select * from user where phone=%s and password=%s", (phoneNumber, password))
+        cursor.execute("Select * from user where phone_num=%s and password=%s", (phoneNumber, password))
         account = cursor.fetchone()
 
 
         if account:
-            return redirect('/addProduct')
+            response = make_response(redirect('/addProduct'))
+            response.set_cookie('userId', str(account[0]))
+            
+            return response
+           
             
         else:
             return render_template('login.html',error="Invalid Credentials")
     else:
         return render_template('login.html')
 
+@app.route('/products',methods=['POST','GET'])
+def products():
+    if(request.method=='POST'):
+        print(request.data)
+        productType=request.form['productType'].lower()
+        productName=request.form['productName'].lower()
+        quantity=request.form['quantity'].lower()
+        quantityType=request.form['quantityType'].lower()
+        userId=request.form['userId']
+        cursor = mysql.connection.cursor()
+        cursor.execute("Insert into products(product_type,product_name,quantity,quantity_type,user_id) values(%s,%s ,%s, %s, %s)", (productType, productName, quantity, quantityType, userId))
+        mysql.connection.commit()
+        cursor.close()
+        
+        return "success"
+    else:
+        args = request.args.to_dict()
+        userId=args.get('userId')
+        cursor = mysql.connection.cursor()
+        cursor.execute("Select * from products where product_type='machinary'")
+        data = cursor.fetchall()
+        print(str(cursor))
+
+        addcursor = mysql.connection.cursor()
+        addcursor.execute("Select address,phone_num,user_id from user")
+        addData = addcursor.fetchall()
+        print(str(addcursor))
+
+        
+        result={"data":data}
+
+        for i in range(len(addData)):
+            result[str(addData[i][2])] = addData[i]
+
+        print(result)
+
+        
+        return result
+
+@app.route('/seeds',methods=['POST','GET'])
+def seeds():
+    if(request.method=='POST'):
+        print(request.data)
+        productType=request.form['productType'].lower()
+        productName=request.form['productName'].lower()
+        quantity=request.form['quantity'].lower()
+        quantityType=request.form['quantityType'].lower()
+        userId=request.form['userId']
+        cursor = mysql.connection.cursor()
+        cursor.execute("Insert into products(product_type,product_name,quantity,quantity_type,user_id) values(%s,%s ,%s, %s, %s)", (productType, productName, quantity, quantityType, userId))
+        mysql.connection.commit()
+        cursor.close()
+        
+        return "success"
+    else:
+        args = request.args.to_dict()
+        userId=args.get('userId')
+        cursor = mysql.connection.cursor()
+        cursor.execute("Select * from products where product_type='seeds' or product_type='fertilizer'")
+        data = cursor.fetchall()
+        print(str(cursor))
+
+        addcursor = mysql.connection.cursor()
+        addcursor.execute("Select address,phone_num,user_id from user")
+        addData = addcursor.fetchall()
+        print(str(addcursor))
+
+        
+        result={"data":data}
+
+        for i in range(len(addData)):
+            result[str(addData[i][2])] = addData[i]
+
+        print(result)
+
+        return result
+    
+@app.route('/fertilizers',methods=['POST','GET'])
+def fertilizers():
+        args = request.args.to_dict()
+        userId=args.get('userId')
+        cursor = mysql.connection.cursor()
+        cursor.execute("Select * from products where product_type='fertilizer'")
+        data = cursor.fetchall()
+        print(str(cursor))
+
+        addcursor = mysql.connection.cursor()
+        addcursor.execute("Select address,phone_num,user_id from user")
+        addData = addcursor.fetchall()
+        print(str(addcursor))
+
+        
+        result={"data":data}
+
+        for i in range(len(addData)):
+            result[str(addData[i][2])] = addData[i]
+
+        print(result)
+
+        return result
+    
 @app.route('/crop-list')
 def croplist():
     return render_template('crop-list.html')
+
+@app.route('/viewProducts')
+def viewProducts():
+    return render_template('products.html')
+
+@app.route('/viewFertilizers')
+def viewFertilizers():
+    return render_template('fertilizers.html')
+
+@app.route('/viewSeeds')
+def viewSeeds():
+    return render_template('seeds.html')
 
 @app.route('/addProduct')
 def addProcut():

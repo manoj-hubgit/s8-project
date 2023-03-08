@@ -17,7 +17,7 @@
 
 <body>
   <header>
-    <div id="page-logo"><a class="headerLogo" href="/templates/index.html">agri portal</a></div>
+    <div id="page-logo"><a class="headerLogo" href="/">agri portal</a></div>
 </header>
 <main>
     <form action="/signup" method="post">
@@ -46,6 +46,9 @@
               <li>
                 <label for="district">District</label>
                 <input type="text" name="district" id="district" required/>
+                {% if error %}
+			          <p class="error" style="color:red">{{ error }}</p>
+		            {% endif %}
               </li>
               
                 <button>Submit</button>

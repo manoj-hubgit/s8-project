@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Oleo+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap"
+  rel="stylesheet"
+/>
+    <link rel="stylesheet" href="static/products.css" />
+    <title>agri portal</title>
+    <link rel="stylesheet" href="/static/shared.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+        <header>
+          <div id="page-logo"><a class="headerLogo" href="/">agri portal</a></div>
+        </header>
+        <main>
+            <div class="products">
+                <div class="ag-format-container">
+                    <div class="ag-courses_box">
+                     
+                     
+                  
+                    </div>
+                  </div>
+                
+              </div>
+        </main>
+    
+</body>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+<script>
+    let container=$(".ag-courses_box")
+    
+    let userId=getCookie("userId")
+    if(userId!=" "){
+        userId=0
+    }
+        let data="userId="+userId;
+       
+    $.ajax({
+          url: "/products",
+          method: 'get',
+    
+    data: data,
+   
+      success: function(result) {
+        console.log(result)
+        if(result["data"].length==0){
+            
+            console.log("kpkpkp")
+            container.append("<div>No data found!!</div>")
+        }
+        else{
+            result["data"].forEach(element => {
+                ele=`<div class="ag-courses_item">
+                        <div  class="ag-courses-item_link">
+                          <div class="ag-courses-item_bg"></div>
+                  
+                          <div class="ag-courses-item_title">
+                           ${element[2].toUpperCase()}
+                          </div>
+                          <div class="ag-courses-item_date-box">
+                            Type:
+                            <span class="ag-courses-item_date">
+                              ${element[1].toUpperCase()}
+                            </span>
+                          </div>
+                          
+                          <div class="ag-courses-item_date-box">
+                            Quantity:
+                            <span class="ag-courses-item_date">
+                              ${element[3]} ${element[4]}
+                            </span>
+                          </div>
+
+                          <div class="ag-courses-item_date-box">
+                            Address:
+                            <span class="ag-courses-item_date">
+                              ${result[element[5]][0]}
+                            </span>
+                          </div>
+
+                          <div class="ag-courses-item_date-box">
+                            Phone:
+                            <span class="ag-courses-item_date">
+                              ${result[element[5]][1]}
+                            </span>
+                          </div>
+
+                        </div>
+                      </div>`
+                      container.append(ele)
+                
+            });
+            
+            
+
+        }
+      },
+
+                fail: function(xhr, textStatus, errorThrown){
+       alert('request failed');
+    }
+  });
+        
+    
+    
+
+
+    function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+</script>
+</html>

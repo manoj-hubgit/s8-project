@@ -18,7 +18,7 @@
   <body>
     <header>
       <div id="page-logo">
-        <a class="headerLogo" href="/templates/index.html">agri portal</a>
+        <a class="headerLogo" href="/">agri portal</a>
       </div>
     </header>
     <main>
@@ -33,7 +33,7 @@
             <label for="password">password</label>
             <input type="password" name="password" id="password" required/>
             {% if error %}
-			      <p class="error">{{ error }}</p>
+			      <p class="error" style="color:red">{{ error }}</p>
 		        {% endif %}
           </li>
           

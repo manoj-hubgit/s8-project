@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="/static/signup-login.css">
 
     <title>agri portal</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+      
   </head>
   <body>
     <header>
@@ -21,12 +25,12 @@
       </div>
     </header>
     <main>
-      <form action="" method="get">
+      <form action="/products" method="post" id="addProductForm">
         <h2>Add Product</h2>
         <ul>
         <li>
         <label for="product-type">What Do You Have</label>
-        <select name="product" id="product-type">
+        <select name="product" id="productType">
           <option value="Machinary">Machinary</option>
           <option value="Seeds">Seeds</option>
           <option value="Fertilizer">Fertilizer</option>
@@ -41,15 +45,75 @@
         <li>
           <label for="Quantity">Quantity</label>
           <input type="number" id="Quantity" name="Quantity" required />
-          <select name="product" id="product-type">
-            <option value="Machinary">pcs</option>
-            <option value="Seeds">kg</option>
-            <option value="Fertilizer">L</option>
+          <select name="quantityType" id="quantity-type">
+            <option value="pcs">pcs</option>
+            <option value="kg">kg</option>
+            <option value="L">L</option>
           </select>
         </li>
-        <button>Submit</button>
+        
+          
+        <input type="button" onclick="addProduct()" id="submitBtn" value="Add Product">
 </ul>
       </form>
     </main>
   </body>
+  <script>
+    function addProduct(){
+      userId=getCookie("userId")
+      if(userId!=" "){
+        formData=new FormData()
+        formData.append("productType",$("#productType").val())
+        formData.append("productName",$("#product-name").val())
+        formData.append("quantity",$("#Quantity").val())
+        formData.append("quantityType",$("#quantity-type").val())
+        formData.append("userId",userId);
+        
+        $.ajax({
+          url: "/products",
+          method: 'post',
+    processData: false,
+    contentType: false,
+    cache: false,
+    data: formData,
+    enctype: 'multipart/form-data',
+      success: function(result) {
+        alert("Product Added successFully")
+        window.location.href="/addProduct"
+      },
+
+                fail: function(xhr, textStatus, errorThrown){
+       alert('request failed');
+    }
+  });
+        
+
+
+
+
+
+      }
+      else{
+        alert("User not found , something went wrong")
+      }
+      
+    }
+    function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+  </script>
 </html>
