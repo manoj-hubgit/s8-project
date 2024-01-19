@@ -2,6 +2,8 @@
 body{
     font-family: "quicksand", sans-serif;
     margin: 0;
+    background-image: linear-gradient(90deg, rgb(193, 233, 178), rgb(155, 225, 130) );
+     
 }
 ul{
 
@@ -22,13 +24,22 @@ header{
 #page-logo a {
     padding: 10px;
     font-family: "oleo script", sans-serif;
-    color: rgb(245, 243, 160);
+    color: rgb(36, 218, 97);
     font-size: 50px;
     text-decoration: none;
     text-transform: uppercase;
     text-shadow: 1px 1px 2px rgb(0, 0, 0);
 }
-
+.indexlogo 
+{
+    padding: 10px;
+    font-family: "oleo script", sans-serif;
+    color: rgb(45, 53, 48);
+    font-size: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+}
 header ul{
     display: flex;
 }
@@ -47,16 +58,17 @@ header li{
 } 
 
 .headerStill{
-    color: rgb(255, 251, 0);
+    font-weight: bold;
+    color: rgb(90, 248, 73);
     text-decoration: none;
     font-size: 20px;
     padding: 12px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(253, 248, 248, 0.2);
     border-radius: 6px;
 }
 .headerStill:hover{
-    color: rgb(77, 77, 77);
-    background-color: rgb(255, 251, 0);
+    color: rgb(242, 237, 237);
+    background-color: rgb(21, 21, 20);
 }
 footer{
   background: linear-gradient(70deg ,rgb(24, 24 , 24), rgb(25,29,29));
@@ -77,4 +89,16 @@ footer img{
 footer ul{
     display: flex;
     justify-content: center;
+}
+.ferti {
+    color: black;
+    text-decoration: none;
+   
+    text-shadow: 1px 1px 2px rgba(253, 248, 248, 0.2);
+    border-radius: 6px;
+
+}
+.ferti:hover{
+    color: rgb(242, 237, 237);
+    background-color: rgb(21, 21, 20);
 }

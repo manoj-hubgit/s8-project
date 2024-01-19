@@ -21,6 +21,7 @@ def signup():
     if(request.method=='POST'):
         name = request.form['name']
         number = request.form['number']
+        
         password = request.form['password']
         address = request.form['address']
         district = request.form['district']
@@ -84,7 +85,7 @@ def products():
         print(str(cursor))
 
         addcursor = mysql.connection.cursor()
-        addcursor.execute("Select address,phone_num,user_id from user")
+        addcursor.execute("Select address,phone_num,user_id,name from user")
         addData = addcursor.fetchall()
         print(str(addcursor))
 
@@ -121,9 +122,9 @@ def seeds():
         cursor.execute("Select * from products where product_type='seeds' or product_type='fertilizer'")
         data = cursor.fetchall()
         print(str(cursor))
-
+        
         addcursor = mysql.connection.cursor()
-        addcursor.execute("Select address,phone_num,user_id from user")
+        addcursor.execute("Select address,phone_num,user_id,name from user")
         addData = addcursor.fetchall()
         print(str(addcursor))
 
@@ -147,7 +148,7 @@ def fertilizers():
         print(str(cursor))
 
         addcursor = mysql.connection.cursor()
-        addcursor.execute("Select address,phone_num,user_id from user")
+        addcursor.execute("Select address,phone_num,user_id,name from user")
         addData = addcursor.fetchall()
         print(str(addcursor))
 
@@ -212,7 +213,7 @@ def bottlegourd():
 
 @app.route('/crop-details/ash-gourd')
 def ashgourd():
-    return render_template('crop-details/ashgourd.html')
+    return render_template('crop-details/ash-gourd.html')
 
 @app.route('/crop-details/potato')
 def potato():

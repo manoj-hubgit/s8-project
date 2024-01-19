@@ -1,14 +1,14 @@
 #page-logo a {
-     color: rgb(183, 230, 235);
+     color: rgb(36, 218, 97);
 }
 .headerStill{
-    color:rgb(183, 230, 235);
+    color: rgb(9, 134, 51);
 
 
 }
 body{
     background: linear-gradient(30deg ,rgb(77,77,77),rgb(58,58,58));
-    color: rgb(58,58,58);
+    background: linear-gradient(45deg, rgb(193, 233, 178),rgb(155, 225, 130));
 }
 header{
     position: static;
@@ -21,9 +21,7 @@ main ul{
     grid-template-columns:1fr 1fr ;
     gap: 20px 20px;
 }
-/*li:nth-of-type(3){
-    grid-column: 1/ span 2;
-}*/
+
 main li img{
         width: 300px;
         height: 280px;

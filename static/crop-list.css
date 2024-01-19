@@ -1,8 +1,11 @@
 header {
   position: static;
 }
+body{
+  background: linear-gradient(45deg, rgb(193, 233, 178),rgb(155, 225, 130));
+}
 main {
-  background-color: pink;
+  background-color: rgb(220, 238, 206);
   margin: 0 5rem 3rem 5rem;
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -20,6 +23,7 @@ h2 {
 
 ul{
     padding:0 5rem 0 5rem ;
+    
 }
 li{
     font-size: 1.3rem;
